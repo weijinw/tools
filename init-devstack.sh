@@ -18,7 +18,7 @@ fi
 
 echo "Changing hostname from $OLD_HOSTNAME to $NEW_HOSTNAME..."
 
-hostname "$NEW_HOSTNAME"
+sudo hostname "$NEW_HOSTNAME"
 
 sudo sed -i "s/$OLD_HOSTNAME/$NEW_HOSTNAME/g" /etc/hostname
 
