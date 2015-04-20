@@ -20,12 +20,25 @@ echo "Changing hostname from $OLD_HOSTNAME to $NEW_HOSTNAME..."
 
 hostname "$NEW_HOSTNAME"
 
-sed -i "s/$OLD_HOSTNAME/$NEW_HOSTNAME/g" /etc/hostname
+sudo sed -i "s/$OLD_HOSTNAME/$NEW_HOSTNAME/g" /etc/hostname
 
 if [ -n "$( grep "$OLD_HOSTNAME" /etc/hosts )" ]; then
- sed -i "s/$OLD_HOSTNAME/$NEW_HOSTNAME/g" /etc/hosts
+ sudo sed -i "s/$OLD_HOSTNAME/$NEW_HOSTNAME/g" /etc/hosts
 else
- echo -e "$( hostname -I | awk '{ print $1 }' )\t$NEW_HOSTNAME" >> /etc/hosts
+ sudo echo -e "$( hostname -I | awk '{ print $1 }' )\t$NEW_HOSTNAME" >> /etc/hosts
 fi
+
+echo "Changed hostname from $OLD_HOSTNAME to $NEW_HOSTNAME..."
+
+# clone the devstack code
+git clone https://git.openstack.org/openstack-dev/devstack
+
+# prepare all the confs
+cd ~/devstack
+wget https://raw.githubusercontent.com/weijinw/tools/master/local.conf
+
+# stack ....
+./clean.sh
+./stack.sh
 
 echo "Done."
