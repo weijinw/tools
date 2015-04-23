@@ -14,47 +14,47 @@ openstack endpoint create \
   keystone
  
 openstack endpoint create \
-     --region RegionTwo  \
-     --publicurl 'http://192.168.1.109:8774/v2/$(tenant_id)s'  \
-     --adminurl 'http://192.168.1.109:8774/v2/$(tenant_id)s' \
-     --internalurl 'http://192.168.1.109:8774/v2/$(tenant_id)s' \
+     --region RegionDevstack  \
+     --publicurl 'http://10.160.25.120:8774/v2/$(tenant_id)s'  \
+     --adminurl 'http://10.160.25.120:8774/v2/$(tenant_id)s' \
+     --internalurl 'http://10.160.25.120:8774/v2/$(tenant_id)s' \
   nova
 
 openstack endpoint create \
-     --region RegionTwo  \
-     --publicurl 'http://192.168.1.109:8774/v2.1/$(tenant_id)s'  \
-     --adminurl 'http://192.168.1.109:8774/v2.1/$(tenant_id)s' \
-     --internalurl 'http://192.168.1.109:8774/v2.1/$(tenant_id)s' \
+     --region RegionDevstack  \
+     --publicurl 'http://10.160.25.120:8774/v2.1/$(tenant_id)s'  \
+     --adminurl 'http://10.160.25.120:8774/v2.1/$(tenant_id)s' \
+     --internalurl 'http://10.160.25.120:8774/v2.1/$(tenant_id)s' \
   nova21
-
-# ec2
-openstack endpoint create \
-     --region RegionTwo  \
-     --publicurl http://192.168.1.109:8773/  \
-     --adminurl http://192.168.1.109:8773/ \
-     --internalurl http://192.168.1.109:8773/ \
-  ec2
 
 # glance
 openstack endpoint create \
-     --region RegionTwo  \
-     --publicurl http://192.168.1.109:9292  \
-     --adminurl http://192.168.1.109:9292 \
-     --internalurl http://192.168.1.109:9292 \
+     --region RegionDevstack  \
+     --publicurl 'http://10.160.25.120:9292'  \
+     --adminurl 'http://10.160.25.120:9292' \
+     --internalurl 'http://10.160.25.120:9292' \
   glance
 
 #cinder
 openstack endpoint create \
-     --region RegionTwo  \
-     --publicurl 'http://192.168.1.109:8776/v1/$(tenant_id)s'  \
-     --adminurl 'http://192.168.1.109:8776/v1/$(tenant_id)s' \
-     --internalurl 'http://192.168.1.109:8776/v1/$(tenant_id)s' \
+     --region RegionDevstack  \
+     --publicurl 'http://10.160.25.120:8776/v1/$(tenant_id)s'  \
+     --adminurl 'http://10.160.25.120:8776/v1/$(tenant_id)s' \
+     --internalurl 'http://10.160.25.120:8776/v1/$(tenant_id)s' \
   cinder
 
 #cinderv2
 openstack endpoint create \
-     --region RegionTwo  \
-     --publicurl 'http://192.168.1.109:8776/v2/$(tenant_id)s'  \
-     --adminurl 'http://192.168.1.109:8776/v2/$(tenant_id)s' \
-     --internalurl 'http://192.168.1.109:8776/v2/$(tenant_id)s' \
+     --region RegionDevstack  \
+     --publicurl 'http://10.160.25.120:8776/v2/$(tenant_id)s'  \
+     --adminurl 'http://10.160.25.120:8776/v2/$(tenant_id)s' \
+     --internalurl 'http://10.160.25.120:8776/v2/$(tenant_id)s' \
   cinderv2
+
+# ec2
+openstack endpoint create \
+     --region RegionDevstack  \
+     --publicurl 'http://10.160.25.120:8773/'  \
+     --adminurl 'http://10.160.25.120:8773/' \
+     --internalurl 'http://10.160.25.120:8773/'10.160.25.120 \
+  ec2

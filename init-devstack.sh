@@ -31,7 +31,7 @@ else
     sudo echo -e "$( hostname -I | awk '{ print $1 }' )\t$NEW_HOSTNAME" >> /etc/hosts
   fi
 
-	echo "Changed hostname from $OLD_HOSTNAME to $NEW_HOSTNAME..."
+  echo "Changed hostname from $OLD_HOSTNAME to $NEW_HOSTNAME..."
 fi
 
 # clone the devstack code
