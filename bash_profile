@@ -20,18 +20,18 @@
 #   1.  ENVIRONMENT CONFIGURATION
 #   -------------------------------
 
-#   Change Prompt
+    #   Change Prompt
     export PS1="______________________________________\n| \w @ \h (\u) \n| => "
     export PS2="| => "
 
-#   Set Paths
-    export PATH=$PATH:/Users/wiwang/ws/tools/maven/bin:/build/toolchain/mac32/fortify-ssc-3.9/bin  # maven
-     export PATH="/usr/local/git/bin:/usr/local/bin:/usr/local/:/usr/local/sbin:$PATH"
+    #   Set Paths
+    # export PATH=$PATH:~/ws/tools/maven/bin # maven
+    export PATH="/usr/local/git/bin:/usr/local/bin:/usr/local/:/usr/local/sbin:$PATH"
 
-#   Java
+    #   Java
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
 
-# Python
+    # Python
     # pip should only run if there is a virtualenv currently activated
     # export PIP_REQUIRE_VIRTUALENV=true
     # cache pip-installed packages to avoid re-downloading
