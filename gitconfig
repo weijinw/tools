@@ -1,0 +1,15 @@
+[diff]
+   tool = vimdiff
+[difftool]
+   prompt = false
+[difftool "diffmerge"] 
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge "$LOCAL" "$REMOTE" # For DiffMerge
+[alias]
+   d = difftool
+   l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+   dir = branch
+[core]
+   autocrlf = input
+[user]
+   email = <email>
+   name = <Name>
