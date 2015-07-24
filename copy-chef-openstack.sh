@@ -1,0 +1,10 @@
+git clone -b stable/juno https://github.com/openstack/openstack-chef-repo.git
+git clone -b stable/juno https://github.com/openstack/cookbook-openstack-block-storage.git
+git clone -b stable/juno https://github.com/openstack/cookbook-openstack-common.git
+git clone -b stable/juno https://github.com/openstack/cookbook-openstack-compute.git
+git clone -b stable/juno https://github.com/openstack/cookbook-openstack-dashboard.git
+git clone -b stable/juno https://github.com/openstack/cookbook-openstack-identity.git
+git clone -b stable/juno https://github.com/openstack/cookbook-openstack-image.git
+git clone -b stable/juno https://github.com/openstack/cookbook-openstack-network.git
+git clone -b stable/juno https://github.com/openstack/cookbook-openstack-bare-metal.git
+git clone -b stable/juno https://github.com/openstack/cookbook-openstack-database.github
