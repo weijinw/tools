@@ -19,7 +19,7 @@ cookbook 'yum', '3.5.2'
 cookbook 'selinux', '0.7.2'
 cookbook 'yum-epel', '0.6.0'
 
-%w{bare-metal block-storage common compute
+%w{block-storage common compute
    dashboard database identity image
    network}.each do |cookbook|
   if ENV['REPO_DEV'] && Dir.exist?("../cookbook-openstack-#{cookbook}")
