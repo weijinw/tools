@@ -1,0 +1,60 @@
+conf = {
+    'box' => 'ol6',
+    'box_url' => 'http://scae12sn-fe.us.oracle.com/shares/export/openstack/devstack_vms/vagrant_box/elos_ol6_clean.box',
+    'allocate_memory' => 4096,
+    'cache_dir' => 'cache/',
+    'ssh_dir' => '~/.ssh/'
+}
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  ip_prefix = "192.168.100"
+
+  config.proxy.http = "http://www-proxy.us.oracle.com:80"
+  config.proxy.https = "http://www-proxy.us.oracle.com:80"
+  config.proxy.no_proxy = "localhost,127.0.0.1"
+
+  config.vm.define "controller", primary:true do |controller|
+    controller.vm.box = conf['box']
+    controller.vm.box_url = conf['box_url']
+    controller.vm.network :private_network, adapter:2, ip:"#{ip_prefix}.10", auto_config: false
+    controller.vm.network "forwarded_port", guest: 8080, host: 8081, auto_correct: true
+    controller.vm.provider :virtualbox do |v|
+      v.name = "controller"
+      #v.gui = true
+    end
+
+    controller.vm.provision "shell",
+      inline: "echo #{ip_prefix}.10",
+      inline: "echo 'sudo ifconfig eth2 #{ip_prefix}.10 netmask 255.255.255.0 up'"
+  end
+
+  (1..4).each do |i|
+    config.vm.define "storage-#{i}" do |node|
+      node.vm.box = conf['box']
+      node.vm.box_url = conf['box_url']
+      ip = i + 10
+      node.vm.network :private_network, adapter:2, ip:"#{ip_prefix}.#{ip}", auto_config: false
+      node.vm.provider :virtualbox do |v|
+        v.name = "storage-#{i}"
+        #v.gui = true
+      end
+
+      node.vm.provision "shell",
+        inline: "echo 'ifconfig eth2 #{ip_prefix}.#{ip} netmask 255.255.255.0 up'"
+    end
+  end
+
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+
+  $hack_script = <<SCRIPT
+echo 'Set Hack: ...'
+SCRIPT
+
+  config.vm.provision "shell",
+    inline: $hack_script
+
+end
