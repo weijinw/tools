@@ -30,22 +30,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       inline: "echo 'sudo ifconfig eth2 #{ip_prefix}.10 netmask 255.255.255.0 up'"
   end
 
-  (1..4).each do |i|
-    config.vm.define "storage-#{i}" do |node|
-      node.vm.box = conf['box']
-      node.vm.box_url = conf['box_url']
-      ip = i + 10
-      node.vm.network :private_network, adapter:2, ip:"#{ip_prefix}.#{ip}", auto_config: false
-      node.vm.provider :virtualbox do |v|
-        v.name = "storage-#{i}"
-        #v.gui = true
-      end
-
-      node.vm.provision "shell",
-        inline: "echo 'ifconfig eth2 #{ip_prefix}.#{ip} netmask 255.255.255.0 up'"
-    end
-  end
-
   config.ssh.username = "vagrant"
   config.ssh.password = "vagrant"
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
