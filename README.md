@@ -1,2 +1,2 @@
 # tools
-Some scripts to deal with OpenStack and vSphere.
+Some scripts to deal with daily work.
