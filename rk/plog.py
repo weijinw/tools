@@ -36,18 +36,21 @@ def parse_level(body):
     for key in ['level']:
         if key in body:
             return body[key]
+    return '-'
 
 
 def parse_timestamp(body):
     for key in ['ts', 'timestamp', 'time', 'date']:
         if key in body:
             return body[key]
+    return '-'
 
 
 def parse_message(body):
     for key in ['msg', 'message', 'log']:
         if key in body:
             return body[key]
+    return '-'
 
 
 def print_keys(body):
@@ -63,7 +66,7 @@ def print_line(body, keys):
         line.append(parse_timestamp(body))
         line.append(parse_level(body))
         line.append(parse_message(body))
-    print(' '.join(line))
+    print(' '.join([str(field) for field in line]))
 
 
 def parse_log_file(log_file, num, keys=None):
