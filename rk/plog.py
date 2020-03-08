@@ -2,6 +2,7 @@
 import argparse
 import json
 import sys
+import datetime
 
 
 parser = argparse.ArgumentParser(description='Parse json logs')
@@ -32,21 +33,33 @@ def parse_json_log(line):
         return None
 
 
-def parse_level(body):
+def parse_instant(instant):
+    try:
+        ts = json.loads(instant)
+        return datetime.datetime.fromtimestamp(
+            ts['epochSecond'] + ts['nanoOfSecond'] / 1000000000)
+    except Exception as ex:
+        return None
+
+
+def get_level(body):
     for key in ['level']:
         if key in body:
             return body[key]
     return '-'
 
 
-def parse_timestamp(body):
+def get_timestamp(body):
+    if 'instant' in body:
+        return parse_instant(body['instant'])
+
     for key in ['ts', 'timestamp', 'time', 'date']:
         if key in body:
             return body[key]
     return '-'
 
 
-def parse_message(body):
+def get_message(body):
     for key in ['msg', 'message', 'log']:
         if key in body:
             return body[key]
@@ -63,9 +76,9 @@ def print_line(body, keys):
         for key in keys:
             line.append(body.get(key))
     else:
-        line.append(parse_timestamp(body))
-        line.append(parse_level(body))
-        line.append(parse_message(body))
+        line.append(get_timestamp(body))
+        line.append(get_level(body))
+        line.append(get_message(body))
     print(' '.join([str(field) for field in line]))
 
 
