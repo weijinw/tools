@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import argparse
-import json
-import sys
 import datetime
+import json
+import pytz
+import sys
 
 
 parser = argparse.ArgumentParser(description='Parse json logs')
@@ -33,11 +34,11 @@ def parse_json_log(line):
         return None
 
 
-def parse_instant(instant):
+def parse_instant(tz):
     try:
-        ts = json.loads(instant)
         return datetime.datetime.fromtimestamp(
-            ts['epochSecond'] + ts['nanoOfSecond'] / 1000000000)
+            ts['epochSecond'] + ts['nanoOfSecond'] / 1000000000,
+            pytz.timezone('UTC'))
     except Exception as ex:
         return None
 
