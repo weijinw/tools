@@ -34,7 +34,7 @@ def parse_json_log(line):
         return None
 
 
-def parse_instant(tz):
+def parse_instant(ts):
     try:
         return datetime.datetime.fromtimestamp(
             ts['epochSecond'] + ts['nanoOfSecond'] / 1000000000,
