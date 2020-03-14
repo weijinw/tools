@@ -1,7 +1,6 @@
 from gql import gql, Client
 import json
 import requests
-import yaml
 from gql.transport.requests import RequestsHTTPTransport
 
 import config
@@ -34,11 +33,23 @@ def create_gql_client(config):
 
 
 if __name__ == "__main__":
-    conf = config.load_yml_conf('./appflows.yml', 'dev-066')
+    conf = config.load_yml_conf('', 'dev-066')
     client = create_gql_client(conf)
 
-    query = load_gql_query("blueprintConnection.gql")
-    res = client.execute(query)
+    query = '''
+query{
+    blueprintConnection {
+        count
+        edges {
+            node {
+                id
+                name
+            }
+        }
+    }
+}
+'''
+    res = client.execute(gql(query))
     blueprints = res["blueprintConnection"]["edges"]
     for bp_node in blueprints:
         bp = bp_node["node"]

@@ -209,8 +209,7 @@ def clone_vm(
 
 
 if __name__ == '__main__':
-    conf = config.load_yml_conf(
-        '/Users/weijin.wang/ws/.secrets/appflows.yml', 'vc-169')
+    conf = config.load_yml_conf('', 'vc-169')
 
     vcc = create_vsphere_connection(
         hostname=conf['url'],
