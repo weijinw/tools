@@ -4,3 +4,4 @@ boto3==1.12.21
 PyYAML==5.3
 pytz
 gql
+flask
