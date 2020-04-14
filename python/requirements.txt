@@ -5,3 +5,4 @@ PyYAML==5.3
 pytz
 gql
 flask
+requests==2.23.0
