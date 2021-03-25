@@ -1,7 +1,7 @@
 notebook==6.0.3
 pyvmomi==6.7.3
 boto3==1.12.21
-PyYAML==5.3
+PyYAML==5.4
 pytz
 gql
 flask
